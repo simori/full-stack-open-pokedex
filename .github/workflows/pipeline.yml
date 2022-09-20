@@ -37,4 +37,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "heroic-pokedex" #Must be unique in Heroku
           heroku_email: "simo.riihimaki@unicus.com"
-      
+          healthcheck: "https://heroic-pokedex.herokuapp.com/health"
+          checkstring: "ok!"
