@@ -1,2 +1,3 @@
 dist/
 node_modules/
+cypress/videos/firsttest.cy.js.mp4
