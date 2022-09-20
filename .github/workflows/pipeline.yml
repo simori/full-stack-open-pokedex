@@ -44,3 +44,16 @@ jobs:
           healthcheck: "https://heroic-pokedex.herokuapp.com/health"
           checkstring: "ok!"
           rollbackonhealthcheckfailed: true
+        
+  tag_release: # 11.15
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      # 11.15
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.40.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          DRY_RUN: true
+          WITH_V: true
