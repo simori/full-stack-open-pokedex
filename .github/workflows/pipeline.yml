@@ -39,3 +39,4 @@ jobs:
           heroku_email: "simo.riihimaki@unicus.com"
           healthcheck: "https://heroic-pokedex.herokuapp.com/health"
           checkstring: "ok!"
+          rollbackonhealthcheckfailed: true
