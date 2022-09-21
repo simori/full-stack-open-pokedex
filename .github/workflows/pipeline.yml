@@ -51,7 +51,7 @@ jobs:
         with:
           severity: info
           details: Successfully deployed new Pokedex version!
-          description: depolyed to https://heroic-pokedex.herokuapp.com by ${{github.event.commits[0].author.username}}!
+          description: deployed to https://heroic-pokedex.herokuapp.com by ${{github.event.commits[0].author.username}}!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Failed Job
         uses: rjstone/discord-webhook-notify@v1.0.4
