@@ -5,7 +5,7 @@ on:
   #  branches:
   #    - master
   schedule:
-    '40 8,10 * * *'
+    - cron: '40 8,10 * * *'
 # 11.19
 jobs:
   health_check:
