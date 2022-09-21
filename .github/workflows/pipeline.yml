@@ -12,7 +12,6 @@ on:
 jobs:
   simple_deployment_pipeline:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }} # 11.16
-    run: echo ${{github.event.commits}}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
