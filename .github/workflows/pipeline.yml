@@ -11,7 +11,8 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }} # 11.16
+    run: echo ${{github.event.commits}}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -44,8 +45,27 @@ jobs:
           healthcheck: "https://heroic-pokedex.herokuapp.com/health"
           checkstring: "ok!"
           rollbackonhealthcheckfailed: true 
+      # 11.18
+      - name: Success Job
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          details: Successfully deployed new Pokedex version!
+          description: depolyed to https://heroic-pokedex.herokuapp.com by ${{github.event.commits[0].author.username}}!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failed Job
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          username: EpäOnnistui
+          details: Build Failed!
+          description: ${{github.event.commits[0].url}} by ${{github.event.commits[0].author.username}} broke the build!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
   tag_release: # 11.15
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip')}}
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip')}} # 11.16
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
