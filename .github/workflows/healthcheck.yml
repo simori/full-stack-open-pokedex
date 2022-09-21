@@ -1,9 +1,11 @@
 name: 11.19 Health Check
 
 on:
-  push:
-    branches:
-      - master
+  #push:
+  #  branches:
+  #    - master
+  schedule:
+    '40 8,10 * * *'
 # 11.19
 jobs:
   health_check:
