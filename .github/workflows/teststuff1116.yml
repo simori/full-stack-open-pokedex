@@ -25,4 +25,4 @@ jobs:
       - name: skippitesti
         if: ${{ github.event_name == 'push' &&
                 contains(join(github.event.commits.*.message, ', '), '#skip') }}
-        run: echo "skippi löydetty!"
+        run: echo "skippi löydetty! skippitesti onnistui!"
